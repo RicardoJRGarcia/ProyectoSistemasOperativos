@@ -168,9 +168,8 @@ class PlanificadorPrioridades:
         print("🎉 Todos los procesos han sido atendidos con planificación por prioridades.")
 
 
-# -------------------------
 # Función Principal
-# -------------------------
+
 def main():
     print("Bienvenido al simulador integrado.")
     print("Seleccione el método de planificación:")
