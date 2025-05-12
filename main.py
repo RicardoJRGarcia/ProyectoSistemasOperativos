@@ -6,9 +6,8 @@ from collections import deque
 from queue import Queue
 
 
-# -------------------------
 # Clases Básicas y Utilidades
-# -------------------------
+
 class Proceso:
     def __init__(self, pid, prioridad):
         self.pid = pid
@@ -48,9 +47,9 @@ class Recursos:
             print(f"Proceso {proceso.pid} finalizó/suspendido. Memoria disponible actual: {self.ram_disponible} MB.")
 
 
-# -------------------------
-# Memoria Compartida con Timeout
-# -------------------------
+
+# Memoria Compartida
+
 class MemoriaCompartida:
     def __init__(self, tamaño):
         self.buffer = Queue(maxsize=tamaño)
@@ -63,7 +62,7 @@ class MemoriaCompartida:
             print(f"Advertencia [Memoria] Proceso {pid} no pudo producir: buffer lleno.")
             return
         self.buffer.put(item)
-        print(f"🟢 [Memoria] Proceso {pid} PRODUCIO: {item}")
+        print(f"[Memoria] Proceso {pid} PRODUCIO: {item}")
         self.sem_consumidor.release()
 
     def consumir(self, pid):
@@ -77,9 +76,8 @@ class MemoriaCompartida:
         return item
 
 
-# -------------------------
 # Planificador FCFS (No apropiativo)
-# -------------------------
+
 class PlanificadorFCFS:
     def __init__(self, gestor_recursos, memoria):
         self.cola_listos = deque()
@@ -120,9 +118,8 @@ class PlanificadorFCFS:
         print(f"Proceso {proceso.pid} terminó su tarea.")
 
 
-# -------------------------
-# Planificador por Prioridades (Preemptivo)
-# -------------------------
+# Planificador por Prioridades (Apropiativo)
+
 class PlanificadorPrioridades:
     def __init__(self, gestor_recursos, memoria):
         self.cola_prioridad = []
